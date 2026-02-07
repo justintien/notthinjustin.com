@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOT THIN JUSTIN | 賈斯汀是胖不是瘦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+        
+        :root {
+            /* 使用 clamp 讓字體在手機(40px)與桌機(180px)間完美縮放 */
+            --fluid-size: clamp(3.5rem, 15vw, 12rem);
+        }
+
+        body { background-color: #000; color: #fff; font-family: system-ui, -apple-system, sans-serif; margin: 0; }
+        .heavy-font { font-family: 'Archivo Black', sans-serif; line-height: 0.85; }
+        
+        /* 核心標題動畫 */
+        .title-stroke {
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            color: transparent;
+            transition: all 0.5s ease;
+        }
+        .title-group:hover .title-stroke {
+            -webkit-text-stroke: 1px #facc15;
+            color: #facc15;
+        }
+
+        /* 絕對穩定的標籤 */
+        .xl-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #facc15;
+            color: #000;
+            padding: 4px 12px;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        /* 防止內容溢出的容器 */
+        .main-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <nav class="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference">
+        <div class="heavy-font text-2xl tracking-tighter">J.</div>
+        <div class="xl-badge">XL QUALITY</div>
+    </nav>
+
+    <div class="main-container px-6 md:px-12 lg:px-24 py-24">
+        
+        <header class="title-group select-none">
+            <h1 class="heavy-font uppercase tracking-tighter" style="font-size: var(--fluid-size);">
+                NOT<br>
+                <span class="title-stroke">THIN</span><br>
+                JUSTIN.
+            </h1>
+        </header>
+
+        <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+            <section>
+                <p class="text-xl md:text-3xl font-bold leading-tight">
+                    賈斯汀是胖，不是瘦。<br>
+                    <span class="text-gray-500 font-light text-lg md:text-xl mt-4 block leading-relaxed">
+                        不被優化的體積，是為了裝載過載的才華。<br>
+                        Justin / 數位創作者 / 份量感生活實踐者。
+                    </span>
+                </p>
+            </section>
+
+            <nav class="space-y-4">
+                <a href="#" class="group flex items-center justify-between p-4 border border-zinc-800 hover:border-yellow-500 transition-all">
+                    <span class="font-black text-sm md:text-lg uppercase tracking-widest">Instagram</span>
+                    <i class="fa-brands fa-instagram text-xl group-hover:text-yellow-500"></i>
+                </a>
+                <a href="#" class="group flex items-center justify-between p-4 border border-zinc-800 hover:border-yellow-500 transition-all">
+                    <span class="font-black text-sm md:text-lg uppercase tracking-widest">Threads</span>
+                    <i class="fa-brands fa-threads text-xl group-hover:text-yellow-500"></i>
+                </a>
+                <a href="mailto:" class="group flex items-center justify-between p-4 bg-yellow-500 text-black hover:bg-yellow-400 transition-all">
+                    <span class="font-black text-sm md:text-lg uppercase tracking-widest">Work with me</span>
+                    <i class="fa-solid fa-arrow-right text-xl"></i>
+                </a>
+            </nav>
+        </div>
+
+    </div>
+
+    <footer class="p-6 md:p-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between gap-4 text-zinc-  600 text-[10px] uppercase tracking-[0.2em]">
+        <p>© 2026 notthinjustin.com / all rights reserved.</p>
+        <p class="text-zinc-400 font-bold">Heavier than your average digital creator.</p>
+    </footer>
+
+</body>
+</html>

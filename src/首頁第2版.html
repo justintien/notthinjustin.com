@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOT THIN JUSTIN | 賈斯汀是胖不是瘦</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;900&display=swap');
+        
+        :root { --main-yellow: #eab308; }
+        body { font-family: 'Inter', sans-serif; cursor: crosshair; }
+        .heavy-font { font-family: 'Archivo Black', sans-serif; }
+        
+        /* 增加背景浮動文字 */
+        .bg-text {
+            position: fixed;
+            font-size: 30vw;
+            font-weight: 900;
+            color: rgba(0,0,0,0.03);
+            z-index: -1;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        /* 新野獸派陰影動畫 */
+        .brutal-card {
+            box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+            border: 4px solid black;
+            transition: all 0.2s ease;
+        }
+        .brutal-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 16px 16px 0px 0px rgba(0,0,0,1);
+        }
+
+        .brutal-btn {
+            border: 3px solid black;
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+            transition: all 0.1s;
+        }
+        .brutal-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+        }
+    </style>
+</head>
+<body class="bg-yellow-50 min-h-screen flex items-center justify-center p-6 overflow-x-hidden">
+
+    <div class="bg-text" style="top: -10%; left: -5%;">HEAVY</div>
+    <div class="bg-text" style="bottom: -10%; right: -5%;">WEIGHT</div>
+
+    <div class="max-w-3xl w-full bg-white brutal-card p-8 md:p-16 relative overflow-hidden">
+        
+        <div class="absolute top-0 right-0 bg-black text-white px-4 py-2 font-black uppercase text-xs tracking-tighter">
+            System Status: High Load / High Performance
+        </div>
+
+        <header class="mb-12">
+            <h1 class="heavy-font text-7xl md:text-9xl leading-[0.85] uppercase italic tracking-tighter">
+                NOT<br>THIN<br>
+                <span class="text-yellow-400" style="-webkit-text-stroke: 3px black;">JUSTIN</span>
+            </h1>
+            <div class="mt-6 flex flex-wrap gap-2">
+                <span class="bg-black text-white px-3 py-1 font-bold text-sm">#是胖不是瘦</span>
+                <span class="border-2 border-black px-3 py-1 font-bold text-sm text-black italic underline">#SizeDoesMatter</span>
+                <span class="bg-red-500 text-white px-3 py-1 font-bold text-sm tracking-tighter">XL ONLY</span>
+            </div>
+        </header>
+
+        <section class="mb-12 border-l-8 border-black pl-6">
+            <p class="text-2xl font-black leading-tight uppercase">
+                佔用的空間多一點，<br>是為了裝下更多的才華。
+            </p>
+            <p class="mt-4 text-gray-600 font-medium">
+                Justin / 數位創作者 / 專業食客 / 空間佔用者。<br>
+                在這個追求「瘦」的時代，我選擇維持自己的「份量」。
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="#" class="brutal-btn flex items-center justify-between p-4 bg-white hover:bg-yellow-400 font-black text-lg">
+                <span>INSTAGRAM</span> <i class="fa-brands fa-instagram text-2xl"></i>
+            </a>
+            <a href="#" class="brutal-btn flex items-center justify-between p-4 bg-black text-white hover:bg-gray-800 font-black text-lg">
+                <span>THREADS</span> <i class="fa-brands fa-threads text-2xl"></i>
+            </a>
+            <a href="#" class="brutal-btn flex items-center justify-between p-4 bg-white hover:bg-red-500 hover:text-white font-black text-lg">
+                <span>YOUTUBE</span> <i class="fa-brands fa-youtube text-2xl"></i>
+            </a>
+            <a href="mailto:hello@notthinjustin.com" class="brutal-btn flex items-center justify-between p-4 bg-blue-400 font-black text-lg">
+                <span>WORK INQUIRY</span> <i class="fa-solid fa-paper-plane text-2xl"></i>
+            </a>
+        </div>
+
+        <footer class="mt-16 pt-8 border-t-4 border-black flex flex-col md:flex-row justify-between items-end md:items-center gap-6">
+            <div>
+                <p class="font-black text-xl italic uppercase">notthinjustin.com</p>
+                <p class="text-xs font-bold text-gray-500 uppercase tracking-widest">Est. 2026 / All Rights Reserved</p>
+            </div>
+            <div class="text-right">
+                <div class="text-[10px] font-black uppercase mb-1">CPU Usage: 99% - Memory Occupied: 128GB</div>
+                <div class="w-32 h-4 border-2 border-black bg-gray-200">
+                    <div class="h-full bg-yellow-400 border-r-2 border-black" style="width: 85%;"></div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
