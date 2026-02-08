@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CTO / Software Engineer / Architect - 不被優化的體積,是為了裝載過載的才華。">
     <title>NOT THIN JUSTIN | 賈斯汀是胖不是瘦</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- favicon generator by https://www.favicon-generator.org/ -->
-     <link rel="icon" href="./assets/images/favicon/favicon.ico" type="image/x-icon">
+    
+    <!-- favicon block start: generator by https://www.favicon-generator.org/ -->
+    <link rel="icon" href="./assets/images/favicon/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="57x57" href="./ /apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./assets/images/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./assets/images/favicon/apple-icon-72x72.png">
@@ -24,137 +23,64 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
     <link rel="manifest" href="./assets/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;800&display=swap');
-        
-        :root {
-            --fluid-size: clamp(3.2rem, 13vw, 10.5rem);
-            --brand-green: #00FF41;
-        }
+    <meta name="msapplication-TileImage" content="./assets/images/favicon/ms-icon-144x144.png">
+    <!-- favicon block end -->
 
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'JetBrains Mono', monospace; 
-            margin: 0; 
-            overflow-x: hidden;
-        }
+    <!-- SEO block start -->
+    <meta property="og:title" content="NOT THIN JUSTIN | 賈斯汀是胖不是瘦">
+    <meta property="og:description" content="CTO / Software Engineer / Architect - 不被優化的體積,是為了裝載過載的才華。">
+    <meta property="og:image" content="./assets/images/logo2.png">
+    <!-- SEO block end -->
 
-        .heavy-font { font-family: 'Archivo Black', sans-serif; line-height: 0.82; }
-        
-        .title-stroke {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-            color: transparent;
-            transition: all 0.3s ease;
-        }
-        .title-group:hover .title-stroke {
-            color: var(--brand-green);
-            -webkit-text-stroke: 0px;
-            text-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
-        }
-
-        .main-container {
-            width: 100%;
-            max-width: 1300px;
-            margin: 0 auto;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .status-tag {
-            background: var(--brand-green);
-            color: #000;
-            padding: 2px 8px;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-    </style>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+TC:wght@300;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/theme.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
 </head>
 <body>
-
-    <nav class="fixed top-0 left-0 w-full p-6 flex justify-between items-center z-50 mix-blend-difference">
-        <div class="heavy-font text-xl text-white">J.</div>
-        <div class="flex items-center gap-3">
-            <span class="text-[10px] text-zinc-500 hidden sm:block">MEMORY_ALLOCATION: MAX</span>
-            <div class="status-tag">OVERLOADED</div>
-        </div>
-    </nav>
-
-    <div class="main-container px-6 md:px-16 py-24">
-        
-        <header class="title-group select-none">
-            <h1 class="heavy-font uppercase tracking-tighter" style="font-size: var(--fluid-size);">
-                NOT<br>
-                <span class="title-stroke">THIN</span><br>
-                JUSTIN.
-            </h1>
-        </header>
-
-        <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-            <section class="lg:col-span-7">
-                <p class="text-2xl md:text-4xl font-extrabold leading-none text-white uppercase italic">
-                    不被優化的體積，<br>是為了裝載過載的才華。
-                </p>
-                <div class="mt-8 space-y-2">
-                    <p class="text-zinc-500 text-sm md:text-base">
-                        <span class="text-zinc-300"># ROLE:</span> CTO / Software Engineer / Architect
-                    </p>
-                    <p class="text-zinc-500 text-sm md:text-base">
-                        <span class="text-zinc-300"># STATUS:</span> 在追求極簡的代碼世界中，維持物理上的高可用性。
-                    </p>
-                </div>
+    <!-- System Status (Fixed Top Left) -->
+    <div class="system-status"></div>
+    
+    <!-- Version Badge (Fixed Bottom Right) -->
+    <div class="version"></div>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <main class="main-content">
+            <!-- Logo -->
+            <div class="logo"></div>
+            
+            <!-- Main Title -->
+            <h1 class="main-title"></h1>
+            
+            <!-- Subtitle -->
+            <p class="subtitle-cn"></p>
+            
+            <!-- System Message -->
+            <div class="system-msg"></div>
+            
+            <!-- Info Grid -->
+            <div class="info-grid"></div>
+            
+            <!-- Social Links Section -->
+            <section class="social-section">
+                <h2 class="section-header">Connect</h2>
+                <div class="social-links"></div>
             </section>
-
-            <nav class="lg:col-span-5 grid grid-cols-1 gap-3">
-                <a href="https://instagram.com/notthinjustin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 border border-zinc-800 hover:border-white transition-all">
-                    <div class="flex items-center gap-4">
-                        <i class="fa-brands fa-instagram text-xl group-hover:text-pink-500"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white">Instagram</span>
-                    </div>
-                    <span class="text-[10px] text-zinc-700 italic">@notthinjustin</span>
-                </a>
-                
-                <a href="https://x.com/notthinjustin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 border border-zinc-800 hover:border-white transition-all">
-                    <div class="flex items-center gap-4">
-                        <i class="fa-brands fa-x-twitter text-xl group-hover:text-blue-400"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white">X.com</span>
-                    </div>
-                    <span class="text-[10px] text-zinc-700 italic">@notthinjustin</span>
-                </a>
-                
-                <a href="https://threads.net/notthinjustin" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between p-4 border border-zinc-800 hover:border-white transition-all">
-                    <div class="flex items-center gap-4">
-                        <i class="fa-brands fa-threads text-xl group-hover:text-zinc-200"></i>
-                        <span class="text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white">Threads</span>
-                    </div>
-                    <span class="text-[10px] text-zinc-700 italic">@notthinjustin</span>
-                </a>
-
-                <a href="mailto:notthinjustin@gmail.com" class="flex items-center justify-center p-4 bg-white text-black font-black text-xs uppercase tracking-[0.2em] hover:bg-zinc-200 transition-all">
-                    Contact Agent / Work Inquiry
-                </a>
-            </nav>
-        </div>
-
+            
+            <!-- Quote -->
+            <blockquote class="quote"></blockquote>
+        </main>
     </div>
-
-    <footer class="p-10 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="flex items-center gap-6">
-            <div class="heavy-font text-5xl opacity-20">J.</div>
-            <div class="text-[10px] text-zinc-700 uppercase leading-relaxed tracking-widest text-center md:text-left">
-                notthinjustin.com // v2.0.26<br>
-                High-capacity system online.
-            </div>
-        </div>
-        <div class="text-[10px] text-zinc-800 font-bold italic hidden sm:block">
-            "Hardware is heavy, Talent is heavier."
-        </div>
-    </footer>
-
+    
+    <!-- Scripts -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/effects.js"></script>
 </body>
 </html>

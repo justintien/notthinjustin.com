@@ -1,0 +1,923 @@
+<!-- by Claude -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賈斯汀是胖不是瘦 | Not Thin Justin</title>
+    <meta name="description" content="軟體工程師 Justin 的個人網站 - 用程式碼改變世界">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+TC:wght@400;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ==================== CSS Variables ==================== */
+        :root {
+            /* Colors */
+            --primary-color: #FF6B35;
+            --secondary-color: #F7931E;
+            --accent-color: #FEC601;
+            --dark-bg: #1a1a2e;
+            --darker-bg: #0f0f1e;
+            --text-light: #ffffff;
+            --text-muted: #a0a0b0;
+            --gradient-1: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            --gradient-2: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            
+            /* Typography */
+            --font-display: 'Bebas Neue', cursive;
+            --font-body: 'Noto Sans TC', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing */
+            --section-padding: 100px 20px;
+            --max-width: 1200px;
+            
+            /* Animations */
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        /* ==================== Global Styles ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--darker-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-1);
+            border-radius: 5px;
+        }
+        
+        /* ==================== Navigation ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        nav .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: var(--transition-smooth);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            transition: var(--transition-smooth);
+        }
+        
+        /* ==================== Hero Section ==================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: var(--section-padding);
+            padding-top: 120px;
+        }
+        
+        /* Animated Background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(247, 147, 30, 0.1) 0%, transparent 50%);
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        .hero-content {
+            max-width: var(--max-width);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 8rem);
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInDown 1s ease-out;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            animation: slideInUp 1s ease-out 0.2s backwards;
+        }
+        
+        .hero .tagline {
+            font-family: var(--font-mono);
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--accent-color);
+            margin-bottom: 50px;
+            animation: slideInUp 1s ease-out 0.4s backwards;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease-out 0.6s backwards;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: var(--transition-bounce);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+        }
+        
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--text-light);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--gradient-1);
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        /* ==================== Sections ==================== */
+        section {
+            padding: var(--section-padding);
+            position: relative;
+        }
+        
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-1);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+        
+        /* ==================== About Section ==================== */
+        .about {
+            background: var(--dark-bg);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+        
+        .about-text .highlight {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-card {
+            background: var(--darker-bg);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: var(--transition-smooth);
+        }
+        
+        .stat-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        /* ==================== Skills Section ==================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background: var(--dark-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid var(--darker-bg);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: var(--transition-smooth);
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-10px);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .skill-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .skill-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        /* ==================== Projects Section ==================== */
+        .projects {
+            background: var(--dark-bg);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .project-card {
+            background: var(--darker-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            border: 2px solid transparent;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .project-content {
+            padding: 30px;
+        }
+        
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .project-description {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            padding: 5px 15px;
+            background: rgba(255, 107, 53, 0.1);
+            color: var(--primary-color);
+            border-radius: 20px;
+            border: 1px solid var(--primary-color);
+        }
+        
+        .project-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+        }
+        
+        .project-link:hover {
+            color: var(--accent-color);
+        }
+        
+        /* ==================== Contact Section ==================== */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-bg);
+            border-radius: 50%;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: var(--transition-bounce);
+            border: 2px solid transparent;
+        }
+        
+        .social-link:hover {
+            background: var(--gradient-1);
+            transform: translateY(-5px) rotate(360deg);
+            border-color: var(--accent-color);
+        }
+        
+        /* ==================== Footer ==================== */
+        footer {
+            background: var(--darker-bg);
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid var(--primary-color);
+        }
+        
+        footer p {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+        
+        footer .heart {
+            color: var(--primary-color);
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* ==================== Animations ==================== */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* ==================== Responsive Design ==================== */
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--dark-bg);
+                width: 100%;
+                padding: 30px;
+                gap: 20px;
+                transition: var(--transition-smooth);
+            }
+            
+            nav ul.active {
+                right: 0;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">NOT THIN JUSTIN</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#projects">專案</a></li>
+                <li><a href="#contact">聯絡</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>賈斯汀是胖不是瘦</h1>
+            <p class="subtitle">軟體工程師 | 程式碼創作者 | 問題解決者</p>
+            <p class="tagline">&lt; Building the future, one line at a time /&gt;</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">查看作品</a>
+                <a href="#contact" class="btn btn-secondary">聯絡我</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title fade-in">關於我</h2>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <p>
+                        嗨!我是 Justin,一位熱愛程式設計的<span class="highlight">軟體工程師</span>。
+                        我相信好的程式碼不僅要解決問題,更要優雅、可維護、可擴展。
+                    </p>
+                    <p>
+                        我專注於<span class="highlight">全端開發</span>,喜歡探索新技術,
+                        並將它們應用在實際專案中。從前端的使用者體驗到後端的系統架構,
+                        我享受打造完整產品的每一個環節。
+                    </p>
+                    <p>
+                        除了寫程式,我也熱衷於<span class="highlight">分享知識</span>,
+                        透過技術文章和開源專案,希望能幫助更多人進入這個美好的領域。
+                    </p>
+                </div>
+                <div class="stats fade-in">
+                    <div class="stat-card">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">年開發經驗</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">完成專案</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">開源貢獻</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">持續學習</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title fade-in">技術技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">⚡</div>
+                    <h3 class="skill-name">前端開發</h3>
+                    <p class="skill-description">React, Vue, TypeScript, HTML5, CSS3, Tailwind</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🚀</div>
+                    <h3 class="skill-name">後端開發</h3>
+                    <p class="skill-description">Node.js, Python, Go, RESTful API, GraphQL</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">💾</div>
+                    <h3 class="skill-name">資料庫</h3>
+                    <p class="skill-description">PostgreSQL, MongoDB, Redis, MySQL</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">☁️</div>
+                    <h3 class="skill-name">雲端服務</h3>
+                    <p class="skill-description">AWS, GCP, Docker, Kubernetes, CI/CD</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-name">設計工具</h3>
+                    <p class="skill-description">Figma, Adobe XD, UI/UX Design</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-name">開發工具</h3>
+                    <p class="skill-description">Git, VS Code, Linux, Agile, Testing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title fade-in">精選專案</h2>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">專案一</h3>
+                        <p class="project-description">
+                            一個創新的全端網頁應用,解決實際商業問題,提升使用者體驗和工作效率。
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <a href="#" class="project-link">查看詳情 →</a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h3 class="project-title">專案二</h3>
+                        <p class="project-description">
+                            響應式網頁應用,支援多平台使用,提供流暢的跨裝置體驗。
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="project-link">查看詳情 →</a>
+                    </div>
+                </div>
+                <div class="project-card fade-in">
+                    <div class="project-image">🤖</div>
+                    <div class="project-content">
+                        <h3 class="project-title">專案三</h3>
+                        <p class="project-description">
+                            整合 AI 技術的智慧系統,自動化處理複雜業務邏輯,提升工作效率。
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">FastAPI</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                        <a href="#" class="project-link">查看詳情 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title fade-in">聯絡我</h2>
+            <div class="contact-content fade-in">
+                <p class="contact-text">
+                    有興趣合作或想聊聊技術?<br>
+                    歡迎透過以下方式與我聯繫!
+                </p>
+                <div class="social-links">
+                    <a href="mailto:your.email@example.com" class="social-link" title="Email">📧</a>
+                    <a href="https://github.com/yourusername" class="social-link" title="GitHub" target="_blank">🐙</a>
+                    <a href="https://linkedin.com/in/yourusername" class="social-link" title="LinkedIn" target="_blank">💼</a>
+                    <a href="https://twitter.com/yourusername" class="social-link" title="Twitter" target="_blank">🐦</a>
+                    <a href="https://medium.com/@yourusername" class="social-link" title="Medium" target="_blank">📝</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            Made with <span class="heart">❤️</span> by Justin | 
+            © 2026 notthinjustin.com | 
+            All rights reserved
+        </p>
+    </footer>
+
+    <script>
+        // ==================== Mobile Menu Toggle ====================
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        // ==================== Smooth Scrolling ====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu after click
+                    document.getElementById('nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // ==================== Scroll Animation ====================
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // ==================== Active Navigation ====================
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ==================== Dynamic Stats Counter (Optional) ====================
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start) + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = document.querySelectorAll('.stat-number');
+                    statNumbers.forEach((stat, index) => {
+                        const value = stat.textContent.replace('+', '');
+                        if (value !== '∞' && !stat.classList.contains('animated')) {
+                            animateValue(stat, 0, parseInt(value), 2000);
+                            stat.classList.add('animated');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
