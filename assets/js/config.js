@@ -58,7 +58,7 @@ const CONFIG = {
     {
       name: "Threads",
       handle: "@notthinjustin",
-      url: "https://threads.net/notthinjustin"
+      url: "https://threads.com/notthinjustin"
     },
     {
       name: "Contact Agent",
