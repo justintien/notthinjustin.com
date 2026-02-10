@@ -45,34 +45,97 @@ class CustomCursor {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
       
-      this.dot.style.left = this.mouseX + 'px';
-      this.dot.style.top = this.mouseY + 'px';
+      // Update dot position immediately
+      if (this.dot) {
+        this.dot.style.left = this.mouseX + 'px';
+        this.dot.style.top = this.mouseY + 'px';
+      }
     });
 
-    // Hover effects
+    // Hover effects - Scale cursor
     const interactiveElements = document.querySelectorAll(
-      'a, button, .info-card, .system-msg, .logo'
+      'a, button, .info-card, .system-msg, .logo, .social-link'
     );
     
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
         this.dot.style.transform = 'scale(2)';
         this.ring.style.transform = 'scale(1.5)';
+        this.ring.style.borderColor = 'var(--primary)';
+        this.ring.style.backgroundColor = 'rgba(0, 255, 65, 0.1)';
       });
       
       el.addEventListener('mouseleave', () => {
         this.dot.style.transform = 'scale(1)';
         this.ring.style.transform = 'scale(1)';
+        this.ring.style.borderColor = 'var(--primary)';
+        this.ring.style.backgroundColor = 'transparent';
+        
+        // Reset element position
+        el.style.transform = 'translate(0, 0)';
       });
+    });
+
+    // Initialize magnetic elements
+    this.magnetics = Array.from(interactiveElements).map(el => ({
+      element: el,
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0,
+      isHovered: false
+    }));
+    
+    // Refresh measurements on resize
+    window.addEventListener('resize', () => this.measureMagnetics());
+    
+    // Initial measure
+    setTimeout(() => this.measureMagnetics(), 1000);
+  }
+
+  measureMagnetics() {
+    if (!this.magnetics) return;
+    
+    this.magnetics.forEach(item => {
+      const rect = item.element.getBoundingClientRect();
+      item.x = rect.left + rect.width / 2;
+      item.y = rect.top + rect.height / 2;
+      item.width = rect.width;
+      item.height = rect.height;
     });
   }
 
   animate() {
+    // Smooth ring movement
     this.ringX += (this.mouseX - this.ringX) * 0.15;
     this.ringY += (this.mouseY - this.ringY) * 0.15;
     
-    this.ring.style.left = this.ringX + 'px';
-    this.ring.style.top = this.ringY + 'px';
+    if (this.ring) {
+      this.ring.style.left = this.ringX + 'px';
+      this.ring.style.top = this.ringY + 'px';
+    }
+
+    // Magnetic Gravity Effect
+    if (this.magnetics) {
+      this.magnetics.forEach(item => {
+        const distance = Math.sqrt(
+          Math.pow(this.mouseX - item.x, 2) + Math.pow(this.mouseY - item.y, 2)
+        );
+        
+        const triggerDistance = 200; // Activation radius
+        
+        if (distance < triggerDistance) {
+          const power = 0.4; // Magnetic strength
+          const x = (this.mouseX - item.x) * power * (1 - distance / triggerDistance);
+          const y = (this.mouseY - item.y) * power * (1 - distance / triggerDistance);
+          
+          item.element.style.transform = `translate(${x}px, ${y}px)`;
+        } else {
+          // Smooth return is handled by CSS transition
+          item.element.style.transform = 'translate(0, 0)';
+        }
+      });
+    }
     
     requestAnimationFrame(() => this.animate());
   }

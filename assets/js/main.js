@@ -33,12 +33,18 @@ class NotThinJustin {
     if (!container) return;
 
     container.innerHTML = this.config.systemStatus
-      .map(status => `
+      .map(status => {
+        const isOverloaded = status.value === 'OVERLOADED' || status.value === 'MAX';
+        const indicatorClass = isOverloaded ? 'status-indicator is-overloaded' : 'status-indicator';
+        const valueClass = isOverloaded ? 'text-overloaded' : '';
+
+        return `
         <div class="status-line">
-          <span class="status-indicator"></span>
-          <span>${status.label}: ${status.value}</span>
+          <span class="${indicatorClass}"></span>
+          <span>${status.label}: <span class="${valueClass}">${status.value}</span></span>
         </div>
-      `)
+        `;
+      })
       .join('');
   }
 
@@ -132,7 +138,7 @@ class NotThinJustin {
 
     container.innerHTML = this.config.socialLinks
       .map(link => `
-        <a href="${link.url}" class="social-link" ${link.url.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+        <a href="${link.url}" class="social-link" ${link.url.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} aria-label="Link to ${link.name} profile">
           <div>
             <div class="social-link__name">${link.name}</div>
             <div class="social-link__handle">${link.handle}</div>
@@ -187,22 +193,22 @@ class NotThinJustin {
  */
 const ThemeManager = {
   themes: ['green', 'blue', 'red', 'purple', 'amber'],
-  
+
   setTheme(themeName) {
     if (!this.themes.includes(themeName)) {
       console.warn(`Theme "${themeName}" not found. Available: ${this.themes.join(', ')}`);
       return;
     }
-    
+
     if (themeName === 'green') {
       document.documentElement.removeAttribute('data-theme');
     } else {
       document.documentElement.setAttribute('data-theme', themeName);
     }
-    
+
     console.log(`Theme changed to: ${themeName}`);
   },
-  
+
   getAvailableThemes() {
     return this.themes;
   }
@@ -223,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 初始化網站
   const site = new NotThinJustin(window.SITE_CONFIG);
-  
+
   // 將實例暴露給全域（方便調試）
   window.siteInstance = site;
 });

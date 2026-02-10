@@ -417,3 +417,36 @@ body {
     display: none;
   }
 }
+
+/* ==================== System Overload Effect ==================== */
+.status-indicator.is-overloaded {
+  background: #ff0051;
+  box-shadow: 0 0 10px #ff0051;
+  animation: pulse-fast 0.5s infinite;
+}
+
+.text-overloaded {
+  color: #ff0051;
+  text-shadow: 0 0 5px rgba(255, 0, 81, 0.5);
+  animation: glitch 2s infinite;
+}
+
+@keyframes pulse-fast {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* Magnetic Element Transition */
+/* Ensure smooth but heavy feeling for magnetic elements */
+.info-card, 
+.social-link, 
+.logo,
+.system-msg {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 0.3s ease,
+              border 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.3s,
+              top 0.3s,
+              left 0.3s;
+}

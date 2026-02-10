@@ -37,10 +37,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+TC:wght@300;700;900&display=swap" rel="stylesheet">
     
+    <!-- Preload Critical Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@300;400;700&family=Noto+Sans+TC:wght@300;700;900&display=swap" as="style">
+    
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/theme.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Justin",
+      "alternateName": "Not Thin Justin",
+      "jobTitle": "CTO / Software Engineer / Architect",
+      "url": "https://notthinjustin.com",
+      "image": "https://notthinjustin.com/assets/images/logo2.png",
+      "sameAs": [
+        "https://instagram.com/notthinjustin",
+        "https://x.com/notthinjustin",
+        "https://threads.net/notthinjustin"
+      ],
+      "description": "不被優化的體積，是為了裝載過載的才華。"
+    }
+    </script>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
