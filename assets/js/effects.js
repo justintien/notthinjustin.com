@@ -15,7 +15,7 @@ class CustomCursor {
     this.ringX = 0;
     this.ringY = 0;
     this.isTouch = 'ontouchstart' in window;
-    
+
     if (!this.isTouch) {
       this.init();
     }
@@ -44,7 +44,7 @@ class CustomCursor {
     document.addEventListener('mousemove', (e) => {
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
-      
+
       // Update dot position immediately
       if (this.dot) {
         this.dot.style.left = this.mouseX + 'px';
@@ -56,7 +56,7 @@ class CustomCursor {
     const interactiveElements = document.querySelectorAll(
       'a, button, .info-card, .system-msg, .logo, .social-link'
     );
-    
+
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
         this.dot.style.transform = 'scale(2)';
@@ -64,13 +64,13 @@ class CustomCursor {
         this.ring.style.borderColor = 'var(--primary)';
         this.ring.style.backgroundColor = 'rgba(0, 255, 65, 0.1)';
       });
-      
+
       el.addEventListener('mouseleave', () => {
         this.dot.style.transform = 'scale(1)';
         this.ring.style.transform = 'scale(1)';
         this.ring.style.borderColor = 'var(--primary)';
         this.ring.style.backgroundColor = 'transparent';
-        
+
         // Reset element position
         el.style.transform = 'translate(0, 0)';
       });
@@ -85,31 +85,56 @@ class CustomCursor {
       height: 0,
       isHovered: false
     }));
-    
+
     // Refresh measurements on resize
     window.addEventListener('resize', () => this.measureMagnetics());
-    
+
     // Initial measure
     setTimeout(() => this.measureMagnetics(), 1000);
+
+    // Re-measure on focus/visibility change to fix tab-switching heavy/gravity loss
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) {
+        this.measureMagnetics();
+        this.ensureAnimationLoop();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      this.measureMagnetics();
+      this.ensureAnimationLoop();
+    });
+  }
+
+  ensureAnimationLoop() {
+    if (!this.isAnimating) {
+      this.isAnimating = true;
+      this.animate();
+    }
   }
 
   measureMagnetics() {
     if (!this.magnetics) return;
-    
+
     this.magnetics.forEach(item => {
       const rect = item.element.getBoundingClientRect();
-      item.x = rect.left + rect.width / 2;
-      item.y = rect.top + rect.height / 2;
-      item.width = rect.width;
-      item.height = rect.height;
+      // Only update if we get valid non-zero values (avoids issues when hidden)
+      if (rect.width > 0 && rect.height > 0) {
+        item.x = rect.left + rect.width / 2;
+        item.y = rect.top + rect.height / 2;
+        item.width = rect.width;
+        item.height = rect.height;
+      }
     });
   }
 
   animate() {
+    this.isAnimating = true;
+
     // Smooth ring movement
     this.ringX += (this.mouseX - this.ringX) * 0.15;
     this.ringY += (this.mouseY - this.ringY) * 0.15;
-    
+
     if (this.ring) {
       this.ring.style.left = this.ringX + 'px';
       this.ring.style.top = this.ringY + 'px';
@@ -121,14 +146,14 @@ class CustomCursor {
         const distance = Math.sqrt(
           Math.pow(this.mouseX - item.x, 2) + Math.pow(this.mouseY - item.y, 2)
         );
-        
+
         const triggerDistance = 200; // Activation radius
-        
+
         if (distance < triggerDistance) {
           const power = 0.4; // Magnetic strength
           const x = (this.mouseX - item.x) * power * (1 - distance / triggerDistance);
           const y = (this.mouseY - item.y) * power * (1 - distance / triggerDistance);
-          
+
           item.element.style.transform = `translate(${x}px, ${y}px)`;
         } else {
           // Smooth return is handled by CSS transition
@@ -136,8 +161,10 @@ class CustomCursor {
         }
       });
     }
-    
-    requestAnimationFrame(() => this.animate());
+
+    if (this.dot) { // Only continue if not destroyed
+      requestAnimationFrame(() => this.animate());
+    }
   }
 
   destroy() {
@@ -153,7 +180,7 @@ class LogoGlitch {
   constructor() {
     this.logo = document.querySelector('.logo');
     this.glitchInterval = null;
-    
+
     if (this.logo) {
       this.init();
     }
@@ -168,9 +195,9 @@ class LogoGlitch {
     this.glitchInterval = setInterval(() => {
       const x = Math.random() * 4 - 2;
       const y = Math.random() * 4 - 2;
-      
+
       this.logo.style.transform = `translate(${x}px, ${y}px)`;
-      
+
       setTimeout(() => {
         this.logo.style.transform = 'translate(0, 0)';
       }, 50);
@@ -192,7 +219,7 @@ class ScrollAnimationObserver {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
-    
+
     this.init();
   }
 
@@ -225,11 +252,11 @@ class BackgroundEffects {
     if (this.config.effects.scanlines) {
       this.addScanlines();
     }
-    
+
     if (this.config.effects.gridBackground) {
       this.addGrid();
     }
-    
+
     if (this.config.effects.noise) {
       this.addNoise();
     }
@@ -269,7 +296,7 @@ class KeyboardShortcuts {
         e.preventDefault();
         this.cycleTheme();
       }
-      
+
       // Ctrl/Cmd + /: Show help
       if ((e.ctrlKey || e.metaKey) && e.key === '/') {
         e.preventDefault();
@@ -283,7 +310,7 @@ class KeyboardShortcuts {
     const current = document.documentElement.getAttribute('data-theme') || 'green';
     const currentIndex = themes.indexOf(current);
     const nextTheme = themes[(currentIndex + 1) % themes.length];
-    
+
     window.ThemeManager?.setTheme(nextTheme);
   }
 
@@ -312,15 +339,15 @@ class EffectsManager {
     if (this.config.effects.customCursor) {
       this.cursor = new CustomCursor();
     }
-    
+
     if (this.config.effects.glitchEffect) {
       this.glitch = new LogoGlitch();
     }
-    
+
     if (this.config.effects.animations) {
       this.scrollObserver = new ScrollAnimationObserver();
     }
-    
+
     this.backgrounds = new BackgroundEffects(this.config);
     this.shortcuts = new KeyboardShortcuts();
   }
@@ -340,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 初始化效果
   const effects = new EffectsManager(window.SITE_CONFIG);
   effects.init();
-  
+
   // 暴露給全域
   window.effectsInstance = effects;
 });
